@@ -7,8 +7,13 @@
 <body>
 <h1>My Library</h1>
     <ul>
-        <li></li>
+        {% for dic in books %}
+        <li>{{ dic['title'] }} - {{ dic['author'] }} - {{ dic['rating'] }}/10</li>
+        {% endfor %}
     </ul>
+    {% if books|length == 0 %}
+    <p>Library is empty.</p>
+    {% endif %}
     
 <a href="{{ url_for('add') }}">Add New Book</a>
 </body>

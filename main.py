@@ -7,11 +7,20 @@ all_books = []
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', books=all_books)
 
 
-@app.route("/add")
+@app.route("/add", methods=['POST', 'GET'])
 def add():
+    global all_books
+    print('hi')
+    if request.method == 'POST':
+        print('POSTTTT')
+        temp_dict = {"title": request.form["title"], 'author': request.form["author"], 'rating': request.form["rating"]}
+        all_books.append(temp_dict)
+    else:
+        print('GETTTT')
+    print(all_books)
     return render_template('add.html')
 
 
