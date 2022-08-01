@@ -29,6 +29,13 @@ db.create_all()
 def home():
     return render_template('index.html', books=Book.query.all())
 
+@app.route('/<id>')
+def delete_page(id):
+    book_for_deletion = Book.query.filter_by(id=id).first()
+    db.session.delete(book_for_deletion)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 @app.route("/add", methods=['POST', 'GET'])
 def add():
