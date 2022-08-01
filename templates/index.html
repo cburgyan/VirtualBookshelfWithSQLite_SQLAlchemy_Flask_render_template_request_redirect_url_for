@@ -8,7 +8,7 @@
 <h1>My Library</h1>
     <ul>
         {% for dic in books %}
-        <li>{{ dic['title'] }} - {{ dic['author'] }} - {{ dic['rating'] }}/10</li>
+        <li>{{ dic['title'] }} - {{ dic['author'] }} - {{ dic['rating'] }}/10 <a href="{{ url_for('edit_rating_page', id=dic['id']) }}">Edit Rating</a></li>
         {% endfor %}
     </ul>
     {% if books|length == 0 %}
