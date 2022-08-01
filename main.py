@@ -25,10 +25,13 @@ class Book(db.Model):
 db.create_all()
 
 
+# Display All Records in Database
 @app.route('/')
 def home():
     return render_template('index.html', books=Book.query.all())
 
+
+# Delete A Record From Database and Redirect to Home Page
 @app.route('/<id>')
 def delete_page(id):
     book_for_deletion = Book.query.filter_by(id=id).first()
@@ -37,6 +40,7 @@ def delete_page(id):
     return redirect(url_for('home'))
 
 
+# Add a Record to the Database And Redirect to Home Page
 @app.route("/add", methods=['POST', 'GET'])
 def add():
     print('hi')
@@ -53,6 +57,7 @@ def add():
     return render_template('add.html')
 
 
+# Edit A Book Rating In The Database and Return to Home Page
 @app.route('/edit/<id>', methods=['GET', 'POST'])
 def edit_rating_page(id):
     book_to_update = Book.query.filter_by(id=id).first()
