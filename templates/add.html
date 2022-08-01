@@ -14,5 +14,7 @@
         <input type="text" name="rating">
         <button type="submit">Add Book</button>
     </form>
+    {% set home_page = url_for('home') %}
+    <button type="button" onclick="window.location.href='{{ home_page }}'" style="margin-top: 20px;">Main Page</button>
 </body>
 </html>
